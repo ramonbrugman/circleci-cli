@@ -339,3 +339,15 @@ workflows:
           filters:
             branches:
               only: master
+
+# Inside the .circleci/config.yml file:
+version: 2
+jobs:
+  build:
+    docker:
+      - image: kamilkisiela/graphql-inspector
+    steps:
+      - checkout
+      - run:
+          name: GraphQL Inspector
+          command: 'graphql-inspector diff "git:origin/master:./schema.graphql" "schema.graphql"'
